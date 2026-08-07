@@ -10,6 +10,9 @@ class Solution:
             result = -1
 
             while left <= right:
+                # Я использую эту формулу, чтобы избежать потенциального integer
+                # overflow, который может возникнуть в языках с фиксированным размером
+                # int, хотя в Python это и не критично
                 mid = left + (right - left) // 2
 
                 if nums[mid] == target:
