@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
+    def findMin(self, nums: list[int]) -> int:
         # Изначально минимальный элемент может быть
         # в любом месте массива, поэтому начинаем
         # с границ всего массива.
