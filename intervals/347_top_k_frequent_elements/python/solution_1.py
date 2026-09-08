@@ -10,7 +10,7 @@ class Solution:
             count[num] += 1
 
         # индекс массива - сколько раз встретилось число
-        # значение - список чисел, которые стретились столько раз
+        # значение - список чисел, которые встретились столько раз
         frequencyList = [[] for _ in range(len(nums) + 1)]
         for num in count:
             frequency = count[num]
@@ -32,4 +32,36 @@ class Solution:
                     return result
                 result.append(num)
                 k -= 1
+        return result
+
+
+class Solution_2:
+    def topKFrequent(self, nums, k):
+        # Шаг 1: Считаем частоты каждого элемента
+        freq = {}
+        for num in nums:
+            if num not in freq:
+                freq[num] = 0
+            freq[num] += 1
+
+        # Шаг 2: Создаём "корзины" (buckets)
+        # Индекс корзины = частота элемента
+        # Максимальная возможная частота = len(nums)
+        # buckets[0] не используется (частота 0 невозможна для существующего элемента)
+        buckets = [[] for _ in range(len(nums) + 1)]
+
+        # Раскладываем элементы по корзинам согласно их частоте
+        for num, count in freq.items():
+            buckets[count].append(num)
+
+        # Шаг 3: Собираем результат, идя от самой высокой частоты к низкой
+        result = []
+        # Идём справа налево (от максимальной частоты к минимальной)
+        for i in range(len(buckets) - 1, 0, -1):
+            for num in buckets[i]:
+                result.append(num)
+                # Как только набрали k элементов — возвращаем ответ
+                if len(result) == k:
+                    return result
+
         return result
