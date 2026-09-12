@@ -1,9 +1,8 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
-    def beautifulSubsets(self, nums: List[int], k: int) -> int:
+    def beautifulSubsets(self, nums: list[int], k: int) -> int:
         # Словарь для отслеживания частоты элементов в текущем подмножестве
         # Используем defaultdict для удобного получения 0, если элемента нет
         counts = defaultdict(int)

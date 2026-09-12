@@ -1,0 +1,1 @@
+[доказательство что кучу можно построить за линейное время](https://translated.turbopages.org/proxy_u/en-ru.ru.d7c4a711-6aa3b6b6-d9158e2b-74722d776562/https/stackoverflow.com/questions/9755721/how-can-building-a-heap-be-on-time-complexity)
