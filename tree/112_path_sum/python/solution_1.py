@@ -27,3 +27,20 @@ class Solution:
 
     def hasPathSum(self, root: TreeNode | None, targetSum: int) -> bool:
         return self.hasSum(root, 0, targetSum)
+
+
+if __name__ == "__main__":
+    # Пример 1: [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+    # Путь 5 → 4 → 11 → 2 = 22 ✓
+    root1 = TreeNode(5)
+    root1.left = TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2)))
+    root1.right = TreeNode(8, TreeNode(13), TreeNode(4, None, TreeNode(1)))
+    print(Solution().hasPathSum(root1, 22))  # True
+
+    # Пример 2: [1,2,3], targetSum = 5
+    # Пути: 1→2=3 и 1→3=4 — ни один не равен 5
+    root2 = TreeNode(1, TreeNode(2), TreeNode(3))
+    print(Solution().hasPathSum(root2, 5))  # False
+
+    # Пример 3: пустое дерево, targetSum = 0
+    print(Solution().hasPathSum(None, 0))  # False
