@@ -6,6 +6,7 @@ class TreeNode:
         self.right = right
 
 
+# данная задача основывается на задаче 104
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode | None) -> int:
         """
