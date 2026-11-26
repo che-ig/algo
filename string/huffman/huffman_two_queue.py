@@ -122,7 +122,7 @@ def generate_codes(root: HuffmanNode | None) -> dict[str, str]:
         if node is None:
             return
         if node.char is not None:
-            codes[node.char] = current_code if current_code else "0"
+            codes[node.char] = current_code
             return
         traverse(node.left, current_code + "0")
         traverse(node.right, current_code + "1")

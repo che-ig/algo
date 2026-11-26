@@ -66,8 +66,8 @@ def lzw_decompress(compressed_data: list[int]) -> bytes:
 
     # Первый код всегда корректен и находится в базовом словаре
     first_code = compressed_data[0]
-    current_string = dictionary[first_code]
-    result: list[bytes] = [current_string]
+    previous_output = dictionary[first_code]
+    result: list[bytes] = [previous_output]
 
     for code in compressed_data[1:]:
         if code in dictionary:
@@ -76,16 +76,19 @@ def lzw_decompress(compressed_data: list[int]) -> bytes:
         else:
             # EDGE CASE: код еще не добавлен в словарь декодера.
             # Это возможно только если код равен строке, которую мы
-            # собираемся добавить прямо сейчас: prev_string + first_char(prev_string)
-            entry = current_string + bytes([current_string[0]])
+            # собираемся добавить прямо сейчас:
+            # previous_output + first_char(previous_output)
+            entry = previous_output + bytes([previous_output[0]])
 
         result.append(entry)
 
-        # Добавляем новую запись в словарь: предыдущая строка + первый символ текущей
-        dictionary[dict_size] = current_string + bytes([entry[0]])
+        # Добавляем новую запись в словарь:
+        # предыдущий вывод + первый символ текущего вывода
+        dictionary[dict_size] = previous_output + bytes([entry[0]])
         dict_size += 1
 
-        current_string = entry
+        # Текущий вывод становится предыдущим для следующей итерации
+        previous_output = entry
 
     return b"".join(result)
 
